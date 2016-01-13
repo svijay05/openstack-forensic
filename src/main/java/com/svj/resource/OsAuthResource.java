@@ -25,6 +25,7 @@ public class OsAuthResource {
 	
 	@GET
 	@Path("/auth")
+    @Produces( MediaType.APPLICATION_JSON )
 	public Auth logIn()
 	{
 		Auth auth = new Auth() ;

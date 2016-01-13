@@ -1,3 +1,44 @@
-url:192.168.1.104:5000
-username:admin
-password:root
+osUrl : "localhost"
+username : "admin"
+password : "root"
+
+
+database:
+  driverClass: com.mysql.jdbc.Driver
+  user: "root"
+  password: ""
+  url: jdbc:mysql://localhost:3306/todo
+  
+server:
+  applicationConnectors:
+    - type: http
+      port: 8090
+      
+httpClient:
+  timeout: 60s # Timeout while connecting, reading, or writing (Heroku needs large value for spin-up)
+  timeToLive: 10m # Keep connections open
+  cookiesEnabled: true # Track cookies
+  gzipEnabled: true # Allow for gzipped request and response entities
+  minThreads: 1
+  maxThreads: 128 # Thread pool for JerseyClient's async requests
+
+logging:
+
+ loggers:
+   "com.svj": DEBUG
+
+ level: INFO
+ appenders:
+   - type: console
+   - type: file
+     currentLogFilename: logs/osft.log
+     threshold: DEBUG
+     archive: false
+     archivedLogFilenamePattern: target/logs/osft-%d.log
+     archivedFileCount: 5
+     timeZone: UTC
+     logFormat: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+
+ 
+   
+  
